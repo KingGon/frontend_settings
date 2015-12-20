@@ -1,0 +1,25 @@
+{
+  "name": "git_setting",
+  "version": "1.0.0",
+  "description": "\"'\r git init\r \"'",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KingGon/frontend_settings.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KingGon/frontend_settings/issues"
+  },
+  "homepage": "https://github.com/KingGon/frontend_settings#readme",
+  "devDependencies": {
+    "babel-core": "^6.3.21",
+    "babel-loader": "^6.2.0",
+    "gulp": "^3.9.0",
+    "webpack": "^1.12.9"
+  }
+}
