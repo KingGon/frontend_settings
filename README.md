@@ -40,7 +40,7 @@ npm install webpack --save-dev
 
 ### webpack 설정
 webpack.config.js
-'''js
+```js
 module.exports = {
   context: __dirname + "/app",
   entry: "./app.js",
@@ -50,7 +50,7 @@ module.exports = {
     path: __dirname + "/dist",
   },
 }
-'''
+```
 
 babel-loader 설치
 npm install babel-loader --save-dev
