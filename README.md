@@ -1,36 +1,36 @@
-#GitHub »ç¿ëÇÏ±â
-Git ¼³Ä¡ : https://git-scm.com
+#GitHub ì‚¬ìš©í•˜ê¸°
+Git ì„¤ì¹˜ : https://git-scm.com
 
-###ÇöÀç ÀÛ¾÷ Æú´õ git ¼³Á¤
+###í˜„ì¬ ì‘ì—… í´ë” git ì„¤ì •
 "'
 git init
 "'
 
-###git ¼³Á¤
+###git ì„¤ì •
 "'
 git config --global user.email js68.kim@gmail.com
 git config --global user.name KingGon
 "'
-###git ¿Ã¸®±â
+###git ì˜¬ë¦¬ê¸°
 git commit -m "first commit"
-git remote add origin ÁÖ¼Ò
+git remote add origin ì£¼ì†Œ
 git push -u origin master
 
 
-###GitHub °¡ÀÔ
-+ Github °¡ÀÔ
+###GitHub ê°€ì…
++ Github ê°€ì…
 + Github New Repository
-+ ÁÖ¼Ò º¹»ç
++ ì£¼ì†Œ ë³µì‚¬
 
 
-#git °¡Á®¿À±â
-git¿¡¼­ ÁÖ¼Òº¹»ç
-git clone ÁÖ¼Ò
+#git ê°€ì ¸ì˜¤ê¸°
+gitì—ì„œ ì£¼ì†Œë³µì‚¬
+git clone ì£¼ì†Œ
 
-###npm ¼³Á¤
-npm install ½Ã¿¡ --save-dev»ç¿ë ÇÏ´Â ÀÌÀ¯?
---save-dev ÇÃ·¡±×¸¦ »ç¿ëÇÏ¸é devDependency·Î ¼³Ä¡µÈ´Ù. °³¹ß´Ü°è¿¡¼­¸¸ ÇÊ¿äÇÑ °æ¿ì
---save-dev ¿É¼ÇÀ» ÁÖ¾î¾ß ÇÑ´Ù. ¾îÇÃ¸®ÄÉÀÌ¼Ç¿¡ ¼öÇà¿¡ ÇÊ¿äÇÑ °æ¿ì --save ÇÃ·¡±×¸¦ ÁØ´Ù.
+###npm ì„¤ì •
+npm install ì‹œì— --save-devì‚¬ìš© í•˜ëŠ” ì´ìœ ?
+--save-dev í”Œë˜ê·¸ë¥¼ ì‚¬ìš©í•˜ë©´ devDependencyë¡œ ì„¤ì¹˜ëœë‹¤. ê°œë°œë‹¨ê³„ì—ì„œë§Œ í•„ìš”í•œ ê²½ìš°
+--save-dev ì˜µì…˜ì„ ì£¼ì–´ì•¼ í•œë‹¤. ì–´í”Œë¦¬ì¼€ì´ì…˜ì— ìˆ˜í–‰ì— í•„ìš”í•œ ê²½ìš° --save í”Œë˜ê·¸ë¥¼ ì¤€ë‹¤.
 
 "'
 npm init
@@ -38,8 +38,9 @@ npm install webpack --global
 npm install webpack --save-dev
 "'
 
-### webpack ¼³Á¤
+### webpack ì„¤ì •
 webpack.config.js
+'''js
 module.exports = {
   context: __dirname + "/app",
   entry: "./app.js",
@@ -49,12 +50,12 @@ module.exports = {
     path: __dirname + "/dist",
   },
 }
+'''
 
-
-babel-loader ¼³Ä¡
+babel-loader ì„¤ì¹˜
 npm install babel-loader --save-dev
 
-gulp ¼³Ä¡
+gulp ì„¤ì¹˜
 npm install gulp --global
 npm install gulp --save-dev
 
@@ -76,13 +77,13 @@ var paths = {
 	html: src + '/**/*.html'
 };
 
-// À¥¼­¹ö¸¦ localhost:8000 ·Î ½ÇÇàÇÑ´Ù.
+// ì›¹ì„œë²„ë¥¼ localhost:8000 ë¡œ ì‹¤í–‰í•œë‹¤.
 gulp.task('server', function () {
 	return gulp.src(dist + '/')
 		.pipe(webserver());
 });
 
-// ÀÚ¹Ù½ºÅ©¸³Æ® ÆÄÀÏÀ» ÇÏ³ª·Î ÇÕÄ¡°í ¾ĞÃàÇÑ´Ù.
+// ìë°”ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ì„ í•˜ë‚˜ë¡œ í•©ì¹˜ê³  ì••ì¶•í•œë‹¤.
 gulp.task('combine-js', function () {
 	return gulp.src(paths.js)
 		.pipe(concat('script.js'))
@@ -90,21 +91,21 @@ gulp.task('combine-js', function () {
 		.pipe(gulp.dest(dist + '/js'));
 });
 
-// sass ÆÄÀÏÀ» css ·Î ÄÄÆÄÀÏÇÑ´Ù.
+// sass íŒŒì¼ì„ css ë¡œ ì»´íŒŒì¼í•œë‹¤.
 gulp.task('compile-sass', function () {
 	return gulp.src(paths.scss)
 		.pipe(sass())
 		.pipe(gulp.dest(dist + '/css'));
 });
 
-// HTML ÆÄÀÏÀ» ¾ĞÃàÇÑ´Ù.
+// HTML íŒŒì¼ì„ ì••ì¶•í•œë‹¤.
 gulp.task('compress-html', function () {
 	return gulp.src(paths.html)
 		.pipe(minifyhtml())
 		.pipe(gulp.dest(dist + '/'));
 });
 
-// ÆÄÀÏ º¯°æ °¨Áö ¹× ºê¶ó¿ìÀú Àç½ÃÀÛ
+// íŒŒì¼ ë³€ê²½ ê°ì§€ ë° ë¸Œë¼ìš°ì € ì¬ì‹œì‘
 gulp.task('watch', function () {
 	livereload.listen();
 	gulp.watch(paths.js, ['combine-js']);
@@ -113,7 +114,7 @@ gulp.task('watch', function () {
 	gulp.watch(dist + '/**').on('change', livereload.changed);
 });
 
-//±âº» task ¼³Á¤
+//ê¸°ë³¸ task ì„¤ì •
 gulp.task('default', [
 	'server', 'combine-js', 
 	'compile-sass', 'compress-html', 
