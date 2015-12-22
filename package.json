@@ -28,7 +28,6 @@
     "gulp-webpack": "^1.5.0",
     "gulp-webserver": "^0.9.1",
     "webpack": "^1.12.9"
-    "webpack": "^1.12.9"
   },
   "dependencies":{
     "react": "^0.14.3",
