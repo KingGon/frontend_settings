@@ -1,42 +1,81 @@
-// À¥¼­¹ö¸¦ localhost:8000 ·Î ½ÇÇàÇÑ´Ù.
+// ì›¹ì„œë²„ë¥¼ localhost:8000 ë¡œ ì‹¤í–‰í•œë‹¤.
+var gulp = require('gulp');
+var webserver = require('gulp-webserver');
+var minify = require('gulp-minify');
+var webpack = require('gulp-webpack');
+var minifyhtml = require('gulp-minify-html');
+var livereload = require('gulp-livereload');
+
+var src = './public/src';
+var dist = './public/dist';
+
+var paths = {
+  js : src + '/js/*.js',
+  html : src + '/**/*.html'
+};
+
+var webpackSetting = {
+  devtool : 'source-map',
+  output : {
+    filename : 'script.js'
+  },
+  module : {
+    loaders : [
+      test : /.js?$/,
+      exclude : /node_modules/,
+      loader : 'babel-loader',
+      query : {
+        presets : ['es2015', 'react']
+      }
+    ],
+  }
+};
+
+
 gulp.task('server', function () {
 	return gulp.src(dist + '/')
 		.pipe(webserver());
 });
 
-// ÀÚ¹Ù½ºÅ©¸³Æ® ÆÄÀÏÀ» ÇÏ³ª·Î ÇÕÄ¡°í ¾ĞÃàÇÑ´Ù.
-gulp.task('combine-js', function () {
+// ìë°”ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ì„ í•˜ë‚˜ë¡œ í•©ì¹˜ê³  ì••ì¶•í•œë‹¤.
+/*gulp.task('combine-js', function () {
 	return gulp.src(paths.js)
 		.pipe(concat('script.js'))
 		.pipe(uglify())
 		.pipe(gulp.dest(dist + '/js'));
-});
+});*/
 
-// sass ÆÄÀÏÀ» css ·Î ÄÄÆÄÀÏÇÑ´Ù.
+// sass íŒŒì¼ì„ css ë¡œ ì»´íŒŒì¼í•œë‹¤.
 /*gulp.task('compile-sass', function () {
 	return gulp.src(paths.scss)
 		.pipe(sass())
 		.pipe(gulp.dest(dist + '/css'));
 });*/
 
-// HTML ÆÄÀÏÀ» ¾ĞÃàÇÑ´Ù.
+gulp.task('combine-js', function() {
+  return gulp.src(paths.js)
+             .pipe(webpack(webpackSetting))
+             //.pipe(minify())
+             .pipe(gulp.dest(dist + '/js'));
+});
+
+// HTML íŒŒì¼ì„ ì••ì¶•í•œë‹¤.
 gulp.task('compress-html', function () {
 	return gulp.src(paths.html)
 		.pipe(minifyhtml())
 		.pipe(gulp.dest(dist + '/'));
 });
 
-// ÆÄÀÏ º¯°æ °¨Áö ¹× ºê¶ó¿ìÀú Àç½ÃÀÛ
+// íŒŒì¼ ë³€ê²½ ê°ì§€ ë° ë¸Œë¼ìš°ì € ì¬ì‹œì‘
 gulp.task('watch', function () {
 	livereload.listen();
 	gulp.watch(paths.js, ['combine-js']);
-	gulp.watch(paths.scss, ['compile-sass']);
+	//gulp.watch(paths.scss, ['compile-sass']);
 	gulp.watch(paths.html, ['compress-html']);
 	gulp.watch(dist + '/**').on('change', livereload.changed);
 });
 
-//±âº» task ¼³Á¤
+//ê¸°ë³¸ task ì„¤ì •
 gulp.task('default', [
-	'server', 'combine-js', 
-	'compile-sass', 'compress-html', 
+	'server', 'combine-js', 'compress-html', 
 	'watch' ]);
