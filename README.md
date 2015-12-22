@@ -1,121 +1,61 @@
-#GitHub 사용하기
-Git 설치 : https://git-scm.com
+##NodeJS 환경에서 front-end 개발환경 설정
+1. nodejs 설치
+2. 프로젝트 폴더 생성
+3. npm 설정(초기설정, 모듈 설치)
+2. git 설정 및 사용
 
-###현재 작업 폴더 git 설정
-"'
-git init
-"'
+###nodejs 설치
+nodejs 설치한다.
 
-###git 설정
-"'
+### 프로젝트 폴더 구조 생성
+### npm 설정
+1. 현재 폴더에 npm 초기화(package.json 생성)
+```sh
+$ npm init
+```
+package.json을 받은 경우에는 `npm install` 을 수행한다.
+```sh
+$ npm install
+```
+2. gulp, webpack 등 각종 모듈 설치
+```sh
+$ npm install gulp --save-dev
+$ npm install webpack --save-dev
+...
+```
++ npm install 시에 --save-dev사용 하는 이유?
+--save-dev 플래그를 사용하면 devDependency로 설치된다. 개발단계에서만 필요한 경우--save-dev 옵션을 주어야 한다. 어플리케이션에 수행에 필요한 경우 --save 플래그를 준다.
+
+### git 사용하기
+1. git 설치 : https://git-scm.com
+2. git 설정
+```sh
 git config --global user.email js68.kim@gmail.com
 git config --global user.name KingGon
-"'
-###git 올리기
-git commit -m "first commit"
-git remote add origin 주소
-git push -u origin master
-
-
-###GitHub 가입
-+ Github 가입
-+ Github New Repository
-+ 주소 복사
-
-
-#git 가져오기
-git에서 주소복사
-git clone 주소
-
-###npm 설정
-npm install 시에 --save-dev사용 하는 이유?
---save-dev 플래그를 사용하면 devDependency로 설치된다. 개발단계에서만 필요한 경우
---save-dev 옵션을 주어야 한다. 어플리케이션에 수행에 필요한 경우 --save 플래그를 준다.
-
-"'
-npm init
-npm install webpack --global
-npm install webpack --save-dev
-"'
-
-### webpack 설정
-webpack.config.js
-```js
-module.exports = {
-  context: __dirname + "/app",
-  entry: "./app.js",
-
-  output: {
-    filename: "app.js",
-    path: __dirname + "/dist",
-  },
-}
+```
+3. 현재 디렉토리 git 설정
+```sh
+$ git init
+```
+4. github 연결
+ 1. Github 가입
+ 2. Github New Repository
+ 3. 주소 복사
+ 4. github 연결
+```sh
+$ git remote add origin 주소
+```
+5. github에 올리기
+```sh
+$ git status 
+$ git add .
+$ git commit -m "add"
+$ git push origin master
 ```
 
-babel-loader 설치
-npm install babel-loader --save-dev
-
-gulp 설치
-npm install gulp --global
-npm install gulp --save-dev
-
-gulpfile.js
-var gulp = require('gulp');
-var webserver = require('gulp-webserver');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var minifyhtml = require('gulp-minify-html');
-var sass = require('gulp-sass');
-var livereload = require('gulp-livereload');
-
-var src = 'public/src';
-var dist = 'public/dist';
-
-var paths = {
-	js: src + '/js/*.js',
-	scss: src + '/scss/*.scss',
-	html: src + '/**/*.html'
-};
-
-// 웹서버를 localhost:8000 로 실행한다.
-gulp.task('server', function () {
-	return gulp.src(dist + '/')
-		.pipe(webserver());
-});
-
-// 자바스크립트 파일을 하나로 합치고 압축한다.
-gulp.task('combine-js', function () {
-	return gulp.src(paths.js)
-		.pipe(concat('script.js'))
-		.pipe(uglify())
-		.pipe(gulp.dest(dist + '/js'));
-});
-
-// sass 파일을 css 로 컴파일한다.
-gulp.task('compile-sass', function () {
-	return gulp.src(paths.scss)
-		.pipe(sass())
-		.pipe(gulp.dest(dist + '/css'));
-});
-
-// HTML 파일을 압축한다.
-gulp.task('compress-html', function () {
-	return gulp.src(paths.html)
-		.pipe(minifyhtml())
-		.pipe(gulp.dest(dist + '/'));
-});
-
-// 파일 변경 감지 및 브라우저 재시작
-gulp.task('watch', function () {
-	livereload.listen();
-	gulp.watch(paths.js, ['combine-js']);
-	gulp.watch(paths.scss, ['compile-sass']);
-	gulp.watch(paths.html, ['compress-html']);
-	gulp.watch(dist + '/**').on('change', livereload.changed);
-});
-
-//기본 task 설정
-gulp.task('default', [
-	'server', 'combine-js', 
-	'compile-sass', 'compress-html', 
-	'watch' ]);
+###github에서 가져오기
+```sh
+$ git clone 주소
+$ git pull origin master //서버 변경사항 가져오기
+$ git diff 이전hash 현재hash // 변경사항 확인
+```
