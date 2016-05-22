@@ -1,19 +1,21 @@
 ##Gulp 설정하기
 Gulp는 빌드 자동화툴이다. 
----
+----------------------
 ###gulp 주요 기능
 + file minification
 + Server side ES6 사용
 + 프론트엔드 사이드의 파일이 변경 될 시 브라우저 새로고침
 + webpack을 사용하여 프론트엔드에서 ES6 사용, import 사용
   (webpack은 module bundler로서 프론트엔드 사이드에서 js 로드를 도와준다)
+
 ### 설치하기
 1. Gulp 전역(Global) 설치
 ```sh
 $ sudo npm install -g gulp
 ```
 
-### Gulp 주요 API(자세한 내용은 gulp api[https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpsrcglobs-options])
+### Gulp 주요 API
+(자세한 내용은 [gulp api](https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpsrcglobs-options))
 1. gulp.task
 2. gulp.src
 3. gulp.dest
@@ -23,7 +25,7 @@ $ sudo npm install -g gulp
 작업을 정의한다.
 deps는 배열 형태를 가지며 이 배열안의 task를 먼저 실행한 다음 fn을 실행한다.
 
-```
+```js
 gulp.task('hello', () => {
     console.log('hello');
 });
@@ -78,11 +80,12 @@ gulp.watch('js/**/*.js', (event) => {
 -------------------
 ### gulpfile 작성하기
 #### 플러그인 설치
-    + gulp-uglify
-    + gulp-clean-css (minify css)
-    + gulp-htmlmin
-    + gulp-imagemin
-    + del (플러그인은 아니지만 사용할 수 있다. 특정 디렉토리 삭제)
+
++ gulp-uglify
++ gulp-clean-css (minify css)
++ gulp-htmlmin
++ gulp-imagemin
++ del (플러그인은 아니지만 사용할 수 있다. 특정 디렉토리 삭제)
  
  ```sh
  $ npm install --save-dev gulp-uglify gulp-clean-css gulp-htmlmin gulp-imagemin del
@@ -97,7 +100,7 @@ gulp.watch('js/**/*.js', (event) => {
  import del from 'del';
  ```
  
- #### 디렉토리 정의
+#### 디렉토리 정의
  ```js
 const DIR = {
     SRC : 'src',
@@ -120,8 +123,6 @@ const DEST = {
  ```
  
  #### TASK 작성
- 
- 
  ```js
  //minify javascript
  gulp.task('js', () => {
