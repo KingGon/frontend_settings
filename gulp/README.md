@@ -1,7 +1,6 @@
 ##Gulp 설정하기
-
 Gulp는 빌드 자동화툴이다. 
-----------------------
+
 ###gulp 주요 기능
 + file minification
 + Server side ES6 사용
@@ -16,7 +15,7 @@ $ sudo npm install -g gulp
 ```
 
 ### Gulp 주요 API
-(자세한 내용은 [gulp api](https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpsrcglobs-options))
+(자세한 내용은 [Gulp api](https://github.com/gulpjs/gulp/blob/master/docs/API.md#gulpsrcglobs-options))
 
 1. gulp.task
 2. gulp.src
